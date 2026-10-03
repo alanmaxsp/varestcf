@@ -5,6 +5,7 @@ title: "varestcf: Focal Prediction Error Covariance and Genetic Variance"
 abstract: "Complete focal prediction error covariance reconstruction and focal genetic variance for linear Gaussian mixed models."
 version: 0.3.0
 date-released: 2026-10-03
+doi: 10.5281/zenodo.23125667
 license: MIT
 repository-code: https://github.com/alanmaxsp/varestcf
 authors:

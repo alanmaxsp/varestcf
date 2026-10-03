@@ -41,6 +41,9 @@ Para el trabajo habitual en GitHub Desktop:
    de instalación/cita necesarias dentro del cambio revisado. En **Releases**,
    cree una publicación con etiqueta `vX.Y.Z` sobre el commit validado de `main`.
    No mueva ni reemplace etiquetas anteriores; publique una nueva para corregirlas.
+   Zenodo está conectado para archivar nuevas releases. Antes de una nueva release,
+   quite el DOI de la versión anterior de `CITATION.cff` y actualice versión y fecha;
+   después, documente el DOI nuevo asignado por Zenodo sin mover la etiqueta.
 7. Después de publicar, sincronice `develop` incorporando los cambios de `main`
    sin sobrescribir trabajos pendientes. Durante desarrollo puede usar una versión
    como `X.Y.Z.9000` en `DESCRIPTION`; la versión publicada debe volver a una
@@ -193,6 +196,9 @@ For routine work in GitHub Desktop:
    installation/citation references within the reviewed change. Under
    **Releases**, create a release with tag `vX.Y.Z` on the validated `main` commit.
    Do not move or replace previous tags; publish a new version to fix them.
+   Zenodo is connected to archive new releases. Before a new release, remove the
+   previous version's DOI from `CITATION.cff` and update version and date; afterwards,
+   document the newly assigned Zenodo DOI without moving the tag.
 7. After release, synchronize `develop` by merging changes from `main` without
    overwriting pending work. During development, a version such as `X.Y.Z.9000`
    may be used in `DESCRIPTION`; the published version must return to an

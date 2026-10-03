@@ -4,6 +4,8 @@
   <a href="#espanol">Español</a> · <a href="#english">English</a>
 </p>
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23125667.svg)](https://doi.org/10.5281/zenodo.23125667)
+
 <a id="espanol"></a>
 
 ## Español
@@ -276,6 +278,16 @@ Versión 0.3.0 experimental. Autor y mantenedor: Alan Pardo
 metodológicas: [Sorensen et al. (2001)](https://doi.org/10.1017/S0016672300004845)
 y [Pardo et al. (2026)](https://doi.org/10.1111/jbg.70059).
 Su relación con el paquete se explica en [procedencia](docs/PROVENIENCIA.md#espanol).
+
+Para citar específicamente la versión **0.3.0**, use:
+
+> Pardo, A. (2026). *varestcf: Focal Prediction Error Covariance and Genetic Variance*
+> (v0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23125667
+
+El DOI de [todas las versiones](https://doi.org/10.5281/zenodo.23125666) identifica
+el software en general y apunta a la última versión archivada. Para reproducibilidad,
+cite el DOI de la versión utilizada. El DOI de 0.3.0 fue asignado después de crear
+la etiqueta: para incluirlo, complete la cita generada en R con el enlace anterior.
 
 ---
 
@@ -593,3 +605,13 @@ Experimental version 0.3.0. Author and maintainer: Alan Pardo
 [Pardo et al. (2026)](https://doi.org/10.1111/jbg.70059).
 Their relationship to the package is explained in
 [provenance](docs/PROVENIENCIA.md#english).
+
+To cite version **0.3.0** specifically, use:
+
+> Pardo, A. (2026). *varestcf: Focal Prediction Error Covariance and Genetic Variance*
+> (v0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23125667
+
+The [all-versions DOI](https://doi.org/10.5281/zenodo.23125666) identifies the
+software in general and resolves to the latest archived version. For reproducibility,
+cite the DOI of the version used. The 0.3.0 DOI was assigned after creating the tag:
+to include it, supplement the citation generated in R with the link above.
