@@ -1,0 +1,34 @@
+bibentry(
+  bibtype = "Manual",
+  title = "varestcf: Focal Prediction Error Covariance and Genetic Variance",
+  author = person("Alan", "Pardo", email = "pardo.alan@inta.gob.ar"),
+  year = "2026",
+  note = paste("R package version", meta$Version),
+  header = "To cite the software:"
+)
+
+bibentry(
+  bibtype = "Article",
+  title = "Inferring the trajectory of genetic variance in the course of artificial selection",
+  author = c(person("D.", "Sorensen"), person("R.", "Fernando"), person("D.", "Gianola")),
+  journal = "Genetical Research",
+  year = "2001",
+  volume = "77",
+  number = "1",
+  pages = "83--94",
+  doi = "10.1017/S0016672300004845",
+  header = "Methodological reference:"
+)
+
+bibentry(
+  bibtype = "Article",
+  title = "Impact of estimating genetic variance in the target group on reliability metrics of the Linear Regression validation method under selection",
+  author = c(person("Alan M.", "Pardo"), person("Daniel O.", "Maiz\u00f3n"),
+             person("Sebasti\u00e1n", "Munilla"), person("Andr\u00e9s", "Legarra")),
+  journal = "Journal of Animal Breeding and Genetics",
+  year = "2026",
+  pages = "1--12",
+  doi = "10.1111/jbg.70059",
+  note = "First published online 19 June 2026",
+  header = "VarEst-CF implementation and empirical evaluation:"
+)

@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "Please cite the software and the relevant methodological references."
+type: software
+title: "varestcf: Focal Prediction Error Covariance and Genetic Variance"
+abstract: "Complete focal prediction error covariance reconstruction and focal genetic variance for linear Gaussian mixed models."
+version: 0.3.0
+license: MIT
+authors:
+  - family-names: Pardo
+    given-names: Alan
+    email: pardo.alan@inta.gob.ar
+references:
+  - type: article
+    title: "Inferring the trajectory of genetic variance in the course of artificial selection"
+    authors:
+      - family-names: Sorensen
+        given-names: D.
+      - family-names: Fernando
+        given-names: R.
+      - family-names: Gianola
+        given-names: D.
+    year: 2001
+    journal: Genetical Research
+    volume: "77"
+    issue: "1"
+    start: 83
+    end: 94
+    doi: 10.1017/S0016672300004845
+  - type: article
+    title: "Impact of estimating genetic variance in the target group on reliability metrics of the Linear Regression validation method under selection"
+    authors:
+      - family-names: Pardo
+        given-names: Alan M.
+        orcid: https://orcid.org/0000-0003-3385-3950
+      - family-names: Maizón
+        given-names: Daniel O.
+      - family-names: Munilla
+        given-names: Sebastián
+      - family-names: Legarra
+        given-names: Andrés
+    year: 2026
+    journal: Journal of Animal Breeding and Genetics
+    start: 1
+    end: 12
+    date-published: 2026-06-19
+    doi: 10.1111/jbg.70059

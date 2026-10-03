@@ -1,0 +1,9 @@
+^CITATION\.cff$
+^\.github$
+^\.gitattributes$
+^\.gitignore$
+^private$
+^benchmarks$
+^local-library$
+^artifacts$
+^check$

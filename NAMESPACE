@@ -1,0 +1,8 @@
+export(reconstruct_focal_pev)
+export(varest_cf)
+importFrom(methods,as)
+importFrom(methods,is)
+importFrom(utils,object.size)
+importFrom(stats,setNames)
+S3method(print,varestcf_fit)
+S3method(print,varestcf_result)
