@@ -1,5 +1,6 @@
 # 0.3.0 — varios términos aleatorios
 
+- Primera publicación pública el 2026-10-03: instalación fija por `v0.3.0`, documentación bilingüe y 147 comprobaciones sintéticas aprobadas en Windows y Linux (first public release with pinned installation, bilingual documentation and 147 passing synthetic checks on Windows and Linux).
 - Validación explícita de rango fijo mediante QR dispersa escalada para rechazar diseños no identificados de forma consistente entre sistemas (explicit fixed-design rank validation across backends).
 - Especificación de términos por nombre, identificación, base y covarianza.
 - Selección explícita del efecto genético focal; todos los términos permanecen en las ecuaciones.

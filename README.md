@@ -20,12 +20,12 @@ Dos funciones públicas:
 Recomendamos usar una versión actual de R. El paquete declara R >= 4.1.0 y
 utiliza Matrix; `remotes` se usa sólo para instalar desde GitHub.
 
-Una vez publicado el repositorio, ejecute en la consola de R:
+Para instalar la primera versión pública, **0.3.0**, ejecute en la consola de R:
 
 ```r
 install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github(
-  "alanmaxsp/varestcf",
+  "alanmaxsp/varestcf@v0.3.0",
   upgrade = "never",
   build = FALSE,
   repos = "https://cloud.r-project.org"
@@ -33,14 +33,20 @@ remotes::install_github(
 library(varestcf)
 ```
 
-Las dependencias necesarias se instalan si faltan. Este comando instala la rama
-principal; `upgrade = "never"` evita actualizar otras dependencias por iniciativa
+Las dependencias necesarias se instalan si faltan. Este comando instala una versión
+fija; `upgrade = "never"` evita actualizar otras dependencias por iniciativa
 del instalador. El argumento `build = FALSE` permite instalar
 directamente la fuente de este paquete R sin construir documentación adicional.
 
 ### Versión estable, desarrollo y versiones numeradas
 
-La instalación anterior usa `main`, la rama reservada para cambios revisados.
+La instalación anterior usa la etiqueta `v0.3.0`, que identifica una versión fija.
+`main` es la rama reservada para cambios revisados. Para instalar su estado actual:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@main", build = FALSE)
+```
+
 `develop` es la rama para cambios y pruebas de la próxima versión. Sus cambios
 no modifican `main` hasta que se revisan y se incorporan explícitamente.
 
@@ -50,14 +56,14 @@ Para probar la versión de desarrollo, elíjala expresamente:
 remotes::install_github("alanmaxsp/varestcf@develop", build = FALSE)
 ```
 
-Para reproducir un análisis con una versión numerada, use su etiqueta. Este
-ejemplo será válido **cuando publiquemos la etiqueta `v0.3.0`**:
+Para reproducir un análisis con una versión numerada, use su etiqueta:
 
 ```r
 remotes::install_github("alanmaxsp/varestcf@v0.3.0", build = FALSE)
 ```
 
-Todavía no hay versiones numeradas publicadas. Una rama puede avanzar; una
+La [release v0.3.0](https://github.com/alanmaxsp/varestcf/releases/tag/v0.3.0)
+incluye el código fuente y sus notas de publicación. Una rama puede avanzar; una
 etiqueta publicada se conserva sin cambios y las correcciones reciben una nueva
 versión. Registre `packageVersion("varestcf")` y `sessionInfo()`; si usa una rama,
 registre además el commit instalado (`packageDescription("varestcf")$RemoteSha`).
@@ -292,12 +298,12 @@ Two public functions:
 We recommend a current version of R. The package declares R >= 4.1.0 and uses
 Matrix; `remotes` is used only to install from GitHub.
 
-Once the repository is public, run the following in the R console:
+To install the first public version, **0.3.0**, run the following in the R console:
 
 ```r
 install.packages("remotes", repos = "https://cloud.r-project.org")
 remotes::install_github(
-  "alanmaxsp/varestcf",
+  "alanmaxsp/varestcf@v0.3.0",
   upgrade = "never",
   build = FALSE,
   repos = "https://cloud.r-project.org"
@@ -305,14 +311,20 @@ remotes::install_github(
 library(varestcf)
 ```
 
-Required dependencies are installed if missing. This command installs the main
-branch; `upgrade = "never"` prevents the installer from updating other dependencies
+Required dependencies are installed if missing. This command installs a fixed
+version; `upgrade = "never"` prevents the installer from updating other dependencies
 on its own initiative. The `build = FALSE` argument installs this R package
 directly from its source without building additional documentation.
 
 ### Stable, development and numbered versions
 
-The installation above uses `main`, the branch reserved for reviewed changes.
+The installation above uses the `v0.3.0` tag, which identifies a fixed version.
+`main` is the branch reserved for reviewed changes. To install its current state:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@main", build = FALSE)
+```
+
 `develop` is the branch for changes and tests for the next version. Its changes
 do not modify `main` until they are reviewed and explicitly merged.
 
@@ -322,14 +334,14 @@ To try the development version, select it explicitly:
 remotes::install_github("alanmaxsp/varestcf@develop", build = FALSE)
 ```
 
-To reproduce an analysis with a numbered version, use its tag. This example will
-work **once we publish the `v0.3.0` tag**:
+To reproduce an analysis with a numbered version, use its tag:
 
 ```r
 remotes::install_github("alanmaxsp/varestcf@v0.3.0", build = FALSE)
 ```
 
-No numbered versions have been published yet. A branch may advance; a published
+The [v0.3.0 release](https://github.com/alanmaxsp/varestcf/releases/tag/v0.3.0)
+includes source code and release notes. A branch may advance; a published
 tag is retained unchanged and fixes receive a new version. Record
 `packageVersion("varestcf")` and `sessionInfo()`; when using a branch, also record the
 installed commit (`packageDescription("varestcf")$RemoteSha`).

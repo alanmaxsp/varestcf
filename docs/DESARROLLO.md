@@ -48,8 +48,8 @@ Para el trabajo habitual en GitHub Desktop:
 
 Una release identifica y describe una versión del código; no implica publicación
 en CRAN ni creación automática de un instalador binario de R. Crear `develop`
-tampoco crea una release. Antes de una primera publicación numerada, las
-instalaciones por etiqueta que muestra el README son ejemplos pendientes.
+tampoco crea una release. La primera versión pública es `v0.3.0`; el README
+recomienda instalar esa etiqueta para fijar el código utilizado.
 
 Las ramas y etiquetas pertenecen al mismo repositorio. Cuando éste es público,
 desarrollo también lo es. La separación controla qué versión se instala por
@@ -200,8 +200,8 @@ For routine work in GitHub Desktop:
 
 A release identifies and describes a code version; it does not imply CRAN
 publication or automatically create an R binary installer. Creating `develop`
-does not create a release either. Until the first numbered release, the README's
-tag installation commands are pending examples.
+does not create a release either. The first public version is `v0.3.0`; the README
+recommends installing that tag to pin the code used.
 
 Branches and tags belong to the same repository. When it is public, development
 is public too. This separation controls the default installation version; it
