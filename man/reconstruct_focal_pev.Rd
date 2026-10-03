@@ -72,6 +72,10 @@ reconstruct_focal_pev(X = NULL, Z = NULL, random_precision = NULL, focal_ids,
   block. Outside groups every variance is required.}
 }
 \description{
+\emph{English reference below; complete Spanish documentation in the
+Español section. Referencia en inglés a continuación; documentación
+completa en español en la sección Español.}
+
 Forms the complete identified mixed-model equations, factors them once, and
 solves only the columns needed for the focal covariance block. Fixed-effect
 uncertainty and cross-coefficient covariances are retained.
@@ -136,6 +140,159 @@ absolute residual divided by the infinity norm of C times the maximum
 absolute solution entry plus one. They do not bound forward error for an
 ill-conditioned model.
 }
+
+\section{Español}{
+\subsection{Descripción}{
+Reconstruye el bloque completo de covarianzas de error de predicción de los
+coeficientes aleatorios focales. Forma las ecuaciones completas e identificadas
+del modelo mixto, las factoriza una vez y resuelve sólo las columnas necesarias.
+Conserva la incertidumbre de efectos fijos y las covarianzas entre coeficientes.
+La interfaz de datos y fórmulas prepara diseños, precisiones y EBV compatibles
+desde las relaciones y componentes de varianza suministrados.
+}
+\subsection{Argumentos}{
+\describe{
+\item{X}{Matriz numérica u objeto Matrix de tipo double con covariables de efectos
+fijos identificados. Sus columnas deben ser linealmente independientes. Se
+permite un diseño sin columnas.}
+\item{Z}{Matriz numérica u objeto Matrix de tipo double con covariables de efectos
+aleatorios. Sus nombres de columna identifican coeficientes de forma única. Las
+filas deben seguir el mismo orden que X.}
+\item{random_precision}{Matriz Q nombrada, simétrica y definida positiva: inversa
+de la covarianza conjunta de todos los coeficientes de Z, incluida la escala de
+varianza. Filas y columnas se alinean con las columnas de Z. No equivale a una
+inversa de relaciones salvo que la escala de varianza sea uno.}
+\item{focal_ids}{IDs únicos de animales en la interfaz de fórmulas, o de
+coeficientes aleatorios en la interfaz matricial, en el orden de salida deseado.
+Los coeficientes pueden representar varios caracteres o regresiones aleatorias.}
+\item{residual_precision}{Inversa de la covarianza residual: escalar positivo,
+vector positivo por registro o matriz nombrada, simétrica y definida positiva.
+Los vectores/matrices nombrados requieren nombres de fila correspondientes en
+X/Z y se alinean por ID de registro. Un vector sin nombres se interpreta por
+posición.}
+\item{block_size}{Entero positivo: número de columnas de la inversa que se
+resuelven juntas.}
+\item{memory_budget_gib}{Presupuesto orientativo positivo de almacenamiento de
+trabajo en GiB. No limita la memoria del sistema operativo ni garantiza RAM
+suficiente.}
+\item{tolerance}{Tolerancia relativa positiva para simetría y errores hacia atrás
+normalizados de las resoluciones por columnas seleccionadas.}
+\item{data}{Data frame para la interfaz automática de fórmulas.}
+\item{formula}{Respuesta y efectos fijos, por ejemplo \code{weight ~ sex + group}.
+Use \code{cbind(y1,y2)} para varias respuestas numéricas. Se admiten respuestas
+ausentes.}
+\item{animal}{Nombre de la columna de IDs de animales en data.}
+\item{relationship}{Matriz de relaciones nombrada y definida positiva: A, H u
+otra relación válida para todos los animales del modelo, sin escala de varianza
+genética. Aporte exactamente una de relationship o relationship_inverse en la
+interfaz de fórmulas con un solo término genético.}
+\item{relationship_inverse}{Inversa de relaciones calculada previamente. Se
+recomienda para evitar una inversión adicional potencialmente densa. Todos los
+IDs de animales deben figurar en filas y columnas. No se procesan pedigrees ni
+genotipos.}
+\item{random}{Fórmula unilateral de la base de coeficientes aleatorios del
+animal; valor predeterminado \code{~1}. La regresión aleatoria, por ejemplo
+\code{~1 + time}, admite una sola respuesta.}
+\item{genetic_variance}{Varianza genética escalar conocida o matriz de
+covarianzas entre coeficientes aleatorios/respuestas. Las matrices nombradas se
+alinean por componente.}
+\item{residual_variance}{Para una respuesta: escalar positivo conocido, vector
+por fila original de data o expresión unilateral evaluada en data. Para varias
+respuestas: escalar, vector por respuesta o matriz de covarianzas residuales.}
+\item{y}{Vector opcional de respuestas finitas en la interfaz matricial explícita,
+en el orden de filas del diseño. Permite calcular EBV focales con las mismas
+ecuaciones.}
+\item{random_effects}{Lista nombrada alternativa de especificaciones de términos
+aleatorios. Cada término requiere \code{id}, una columna de data. Los campos
+opcionales son \code{random} (base unilateral, predeterminada \code{~1}),
+\code{variance} (escalar o covarianza entre componentes), \code{relationship} o
+\code{relationship_inverse}, \code{levels} y \code{allow_missing}. Si no se
+aporta una relación, los niveles son independientes y se construye la identidad.
+\code{levels} define su orden completo; si se omite, se infieren los niveles
+observados. El término genético focal requiere una relación explícitamente
+suministrada. No mezcle esta lista con animal, random, genetic_variance ni las
+relaciones del nivel superior.}
+\item{focal_effect}{Nombre obligatorio del término genético que se resume cuando
+se usa random_effects. Todos los demás términos permanecen en las ecuaciones
+completas.}
+\item{correlated_effects}{Lista opcional de grupos disjuntos, cada uno con
+\code{effects} (al menos dos nombres de términos) y \code{covariance} (covarianza
+conjunta entre componentes). Los términos del grupo deben compartir la misma
+inversa de relaciones y conjunto de IDs. La covarianza sigue el orden de efectos
+y luego el de componentes de cada término. Un término escalar usa su nombre;
+uno con varios componentes usa término:componente. Las covarianzas nombradas se
+alinean por esas etiquetas. Dentro de un grupo puede omitirse la varianza
+individual; si se aporta, debe coincidir con su bloque diagonal conjunto. Fuera
+de los grupos todas las varianzas son obligatorias.}
+}
+}
+\subsection{Ecuaciones y escala}{
+Para diseños X y Z, precisión residual W y precisión aleatoria Q, la matriz C
+tiene bloques X'WX, X'WZ, Z'WX y Z'WZ + Q. Si E selecciona los coeficientes
+focales dentro del sistema completo, la covarianza es E'C-inversa E. No se
+invierte la submatriz principal focal de C ni se consideran conocidos los
+efectos fijos.
+
+La covarianza es condicional al modelo y a los componentes suministrados. No
+incluye incertidumbre de estimación de componentes. En la interfaz matricial
+debe suministrarse una parametrización identificada equivalente de X; las
+columnas redundantes se rechazan. En la interfaz de fórmulas se eliminan y
+registran columnas fijas redundantes mediante QR dispersa escalada. No se
+estiman componentes de varianza.
+
+Con coeficientes agrupados por componente, Q puede construirse mediante
+\code{kronecker(solve(G0), Kinv)}. K puede ser A, H u otra covarianza válida.
+La interfaz de fórmulas construye Q con la inversa de relaciones y covarianza
+genética suministradas; la interfaz matricial recibe Q explícita. Nunca se
+sustituye H por A. Las relaciones deben incluir todos los animales del modelo,
+no sólo los focales.
+
+Con varias respuestas hay coeficientes fijos separados por carácter y el
+apilamiento se realiza por carácter. Con respuestas ausentes y residuos
+correlacionados se invierte por separado cada submatriz residual observada.
+Los términos aleatorios independientes forman bloques de precisión separados;
+para un grupo correlacionado se invierte primero su covarianza conjunta entre
+componentes y luego se calcula el producto de Kronecker con la inversa de
+relaciones común. Los términos adicionales pueden tener sus propias bases de
+regresión aleatoria para una respuesta.
+
+Por defecto se rechazan IDs vacíos o ausentes en filas observadas.
+\code{allow_missing = TRUE} asigna explícitamente incidencia cero a ese término;
+no infiere ni modela el efecto de un progenitor desconocido. Represente el nivel
+desconocido explícitamente cuando su efecto forme parte del modelo previsto.
+Se conservan niveles no observados presentes en relaciones o niveles explícitos.
+
+No se automatizan offsets de fórmula, regresión aleatoria multicaracter,
+covarianzas generales entre kernels ni bloques residuales multivariados
+heterogéneos. El alcance son modelos mixtos lineales gaussianos condicionales a
+covarianzas suministradas.
+}
+\subsection{Recursos y exactitud numérica}{
+La referencia valida que Q y una precisión residual general sean definidas
+positivas mediante factorizaciones adicionales. Las cotas conservadoras de
+ensamblado y los índices CSC de 32 bits pueden rechazar un modelo que una
+representación más optimizada admitiría. El llenado del factor y las
+asignaciones temporales siguen siendo inciertos; una comprobación posterior a
+la factorización no impide todos los casos de falta de memoria. Sigma es densa
+y su validación final con Cholesky cuesta tiempo cúbico en el número de
+coeficientes focales. No se usan caches ni aproximaciones implícitas.
+}
+\subsection{Resultado}{
+Lista de clase \code{varestcf_fit} con \code{Sigma}, covarianza focal densa y
+nombrada; \code{ebv}, valores genéticos compatibles si se aportaron respuestas;
+metadatos del modelo de fórmulas cuando corresponde, incluidos el término focal,
+los términos del modelo y conteos de incidencias explícitamente nulas;
+\code{focal_ids}, su orden; y \code{diagnostics}.
+
+Los diagnósticos incluyen dimensiones, entradas almacenadas, tamaños de objetos,
+cota de ensamblado, residuos absolutos y errores hacia atrás por bloque, y
+segundos por etapa. Los tamaños y estimaciones no miden el pico de memoria
+residente. El error hacia atrás es el máximo residuo absoluto dividido por
+la norma infinito de C multiplicada por el máximo valor absoluto de la solución,
+más uno. No limita el error hacia adelante en un modelo mal condicionado.
+}
+}
+
 \seealso{\code{\link{varest_cf}}}
 \examples{
 ids <- c("a", "b", "c")
