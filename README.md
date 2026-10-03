@@ -281,7 +281,7 @@ Su relación con el paquete se explica en [procedencia](docs/PROVENIENCIA.md#esp
 
 Para citar específicamente la versión **0.3.0**, use:
 
-> Pardo, A. (2026). *varestcf: Focal Prediction Error Covariance and Genetic Variance*
+> Pardo, A. (2026). *varestcf: An R Package for Estimating Focal Genetic Variance*
 > (v0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23125667
 
 El DOI de [todas las versiones](https://doi.org/10.5281/zenodo.23125666) identifica
@@ -608,7 +608,7 @@ Their relationship to the package is explained in
 
 To cite version **0.3.0** specifically, use:
 
-> Pardo, A. (2026). *varestcf: Focal Prediction Error Covariance and Genetic Variance*
+> Pardo, A. (2026). *varestcf: An R Package for Estimating Focal Genetic Variance*
 > (v0.3.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23125667
 
 The [all-versions DOI](https://doi.org/10.5281/zenodo.23125666) identifies the

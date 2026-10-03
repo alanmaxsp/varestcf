@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Please cite the software and the relevant methodological references."
 type: software
-title: "varestcf: Focal Prediction Error Covariance and Genetic Variance"
+title: "varestcf: An R Package for Estimating Focal Genetic Variance"
 abstract: "Complete focal prediction error covariance reconstruction and focal genetic variance for linear Gaussian mixed models."
 version: 0.3.0
 date-released: 2026-10-03

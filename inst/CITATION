@@ -1,6 +1,6 @@
 bibentry(
   bibtype = "Manual",
-  title = "varestcf: Focal Prediction Error Covariance and Genetic Variance",
+  title = "varestcf: An R Package for Estimating Focal Genetic Variance",
   author = person("Alan", "Pardo", email = "pardo.alan@inta.gob.ar"),
   year = "2026",
   note = paste("R package version", meta$Version),

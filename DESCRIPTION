@@ -1,6 +1,6 @@
 Package: varestcf
 Type: Package
-Title: Focal Prediction Error Covariance and Genetic Variance
+Title: An R Package for Estimating Focal Genetic Variance
 Version: 0.3.0
 Authors@R: person(
     given = "Alan",
