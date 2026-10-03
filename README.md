@@ -35,10 +35,40 @@ library(varestcf)
 
 Las dependencias necesarias se instalan si faltan. Este comando instala la rama
 principal; `upgrade = "never"` evita actualizar otras dependencias por iniciativa
-del instalador. Para repetir un análisis con una versión publicada concreta,
-añada `ref = "v0.3.0"` a `install_github()` cuando esté disponible esa etiqueta,
-y registre `sessionInfo()`. El argumento `build = FALSE` permite instalar
+del instalador. El argumento `build = FALSE` permite instalar
 directamente la fuente de este paquete R sin construir documentación adicional.
+
+### Versión estable, desarrollo y versiones numeradas
+
+La instalación anterior usa `main`, la rama reservada para cambios revisados.
+`develop` es la rama para cambios y pruebas de la próxima versión. Sus cambios
+no modifican `main` hasta que se revisan y se incorporan explícitamente.
+
+Para probar la versión de desarrollo, elíjala expresamente:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@develop", build = FALSE)
+```
+
+Para reproducir un análisis con una versión numerada, use su etiqueta. Este
+ejemplo será válido **cuando publiquemos la etiqueta `v0.3.0`**:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@v0.3.0", build = FALSE)
+```
+
+Todavía no hay versiones numeradas publicadas. Una rama puede avanzar; una
+etiqueta publicada se conserva sin cambios y las correcciones reciben una nueva
+versión. Registre `packageVersion("varestcf")` y `sessionInfo()`; si usa una rama,
+registre además el commit instalado (`packageDescription("varestcf")$RemoteSha`).
+
+En un repositorio público, `develop` también es visible y descargable, pero sólo
+se instala si el usuario la selecciona. Instalar estable y desarrollo en la misma
+biblioteca de R reemplaza la instalación anterior; use bibliotecas separadas si
+necesita conservar ambas simultáneamente.
+
+La [guía de trabajo](docs/DESARROLLO.md#espanol) explica cómo cambiar de rama en GitHub Desktop
+y revisar cambios antes de incorporarlos a `main`.
 
 ### Primer análisis completo
 
@@ -277,10 +307,40 @@ library(varestcf)
 
 Required dependencies are installed if missing. This command installs the main
 branch; `upgrade = "never"` prevents the installer from updating other dependencies
-on its own initiative. To repeat an analysis with a specific published version,
-add `ref = "v0.3.0"` to `install_github()` when that tag becomes available, and
-record `sessionInfo()`. The `build = FALSE` argument installs this R package
+on its own initiative. The `build = FALSE` argument installs this R package
 directly from its source without building additional documentation.
+
+### Stable, development and numbered versions
+
+The installation above uses `main`, the branch reserved for reviewed changes.
+`develop` is the branch for changes and tests for the next version. Its changes
+do not modify `main` until they are reviewed and explicitly merged.
+
+To try the development version, select it explicitly:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@develop", build = FALSE)
+```
+
+To reproduce an analysis with a numbered version, use its tag. This example will
+work **once we publish the `v0.3.0` tag**:
+
+```r
+remotes::install_github("alanmaxsp/varestcf@v0.3.0", build = FALSE)
+```
+
+No numbered versions have been published yet. A branch may advance; a published
+tag is retained unchanged and fixes receive a new version. Record
+`packageVersion("varestcf")` and `sessionInfo()`; when using a branch, also record the
+installed commit (`packageDescription("varestcf")$RemoteSha`).
+
+In a public repository, `develop` is also visible and downloadable, but is only
+installed when users select it. Installing stable and development in the same R
+library replaces the previous installation; use separate libraries if you need
+both simultaneously.
+
+The [working guide](docs/DESARROLLO.md#english) explains switching branches in GitHub Desktop
+and reviewing changes before merging them into `main`.
 
 ### First complete analysis
 
