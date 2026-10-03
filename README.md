@@ -7,9 +7,104 @@ Dos funciones públicas:
 - `reconstruct_focal_pev()` prepara las ecuaciones, calcula predicciones compatibles y obtiene todas las PEV/PEC focales.
 - `varest_cf()` calcula el estadístico a partir de esas predicciones y su matriz completa de error.
 
-## Uso habitual
+## Instalación
+
+Recomendamos usar una versión actual de R. El paquete declara R >= 4.1.0 y
+utiliza Matrix; `remotes` se usa sólo para instalar desde GitHub.
+
+Una vez publicado el repositorio, ejecute en la consola de R:
+
+```r
+install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github(
+  "alanmaxsp/varestcf",
+  upgrade = "never",
+  build = FALSE,
+  repos = "https://cloud.r-project.org"
+)
+library(varestcf)
+```
+
+Las dependencias necesarias se instalan si faltan. Este comando instala la rama
+principal; `upgrade = "never"` evita actualizar otras dependencias por iniciativa
+del instalador. Para repetir un análisis con una versión publicada concreta,
+añada `ref = "v0.3.0"` a `install_github()` cuando esté disponible esa etiqueta,
+y registre `sessionInfo()`. El argumento `build = FALSE` permite instalar
+directamente la fuente de este paquete R sin construir documentación adicional.
+
+## Primer análisis completo
+
+Copie este ejemplo después de instalar el paquete. Todos los datos son
+inventados. K es una matriz de relaciones suministrada; el paquete no necesita
+construirla desde un pedigree.
+
+```r
+# Entirely synthetic data and a supplied relationship matrix.
+library(varestcf)
+
+ids <- paste0("animal", 1:4)
+K <- matrix(c(
+  1,   0,   0.5, 0.5,
+  0,   1,   0.5, 0.5,
+  0.5, 0.5, 1,   0.5,
+  0.5, 0.5, 0.5, 1
+), nrow = 4, byrow = TRUE, dimnames = list(ids, ids))
+
+records <- data.frame(
+  animal = rep(ids[1:3], each = 2),
+  group = rep(c("group1", "group2"), 3),
+  trait = c(10, 11, 9, 10, 13, 12)
+)
+
+fit <- reconstruct_focal_pev(
+  data = records,
+  formula = trait ~ group,
+  animal = "animal",
+  relationship = K,
+  focal_ids = ids[2:4],
+  genetic_variance = 2,
+  residual_variance = 1
+)
+
+result <- varest_cf(fit)
+print(result)
+
+# Compatible focal breeding values and their complete error covariance.
+print(fit$ebv)
+print(fit$Sigma)
+```
+
+El resultado esperado, salvo redondeo numérico, es:
+
+```text
+VarEst-CF
+      target n  estimate  ebv_term error_term normalization
+ (Intercept) 3 0.9779592 0.6160544  0.3619048             n
+```
+
+`estimate` es la varianza genética del grupo focal estimada mediante VarEst-CF.
+`ebv_term` es la contribución de sus EBV centrados y `error_term` es la corrección
+obtenida de la matriz completa de PEV/PEC. La normalización predeterminada
+divide por el número de animales focales.
+
+El grupo focal incluye `animal4`, que no tiene observaciones. Se conserva porque
+está incluido en K y en las ecuaciones. `fit$Sigma` es una matriz completa 3×3:
+su diagonal contiene las PEV y las entradas fuera de la diagonal contienen las
+PEC entre los focales. `fit$ebv` sigue el mismo orden.
+
+El mismo ejemplo está instalado con el paquete y se puede ejecutar mediante:
+
+```r
+source(system.file("examples", "getting_started.R", package = "varestcf"))
+```
+
+## Con tus datos
 
 El usuario aporta datos, fórmulas, componentes de varianza y una matriz de relaciones K o su inversa. K puede ser genealógica (A), genómica (G), combinada (H) u otra matriz válida para el efecto genético especificado.
+
+En las plantillas siguientes, sustituya `records`, `Kinv`, `focal_ids` y los
+componentes de varianza por las entradas de su modelo. Las columnas nombradas
+en las fórmulas deben existir en `records`.
 
 ```r
 library(varestcf)
@@ -103,9 +198,9 @@ Las IDs de los términos deben estar completas en las filas observadas. La opci�
 
 La [tabla de cobertura](docs/MODELOS.md) distingue capacidades implementadas, extensiones que requieren matrices explícitas y modelos fuera del alcance actual.
 
-## Ejemplo reproducible
+## Otros ejemplos reproducibles
 
-Instale el paquete local con `R CMD INSTALL varestcf_0.3.0.tar.gz` y ejecute:
+Después de instalar el paquete, puede ejecutar otros ejemplos completos:
 
 ```r
 source(system.file("examples", "formula_workflow.R", package = "varestcf"))

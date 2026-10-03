@@ -4,6 +4,7 @@ bibentry(
   author = person("Alan", "Pardo", email = "pardo.alan@inta.gob.ar"),
   year = "2026",
   note = paste("R package version", meta$Version),
+  url = "https://github.com/alanmaxsp/varestcf",
   header = "To cite the software:"
 )
 

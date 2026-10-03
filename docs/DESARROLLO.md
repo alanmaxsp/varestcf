@@ -15,6 +15,11 @@ Los datos reales, los benchmarks privados, los diagnósticos históricos y los
 archivos generados se conservan fuera del repositorio. No forman parte de la
 instalación ni son necesarios para ejecutar las pruebas públicas.
 
+El [primer análisis del README](../README.md#primer-análisis-completo) coincide
+con `inst/examples/getting_started.R`: se puede copiar completo y también ejecutar
+desde la instalación del paquete. Su matriz de relaciones y sus observaciones
+son explícitas; no depende de archivos auxiliares de los otros ejemplos.
+
 ## Chequeo automático
 
 El flujo [R-CMD-check](../.github/workflows/R-CMD-check.yaml) se ejecuta en cada

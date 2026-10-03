@@ -13,6 +13,8 @@ Description: A transparent R reference for reconstructing a complete focal
     computing focal genetic variance from compatible breeding values and
     prediction error covariances. Includes synthetic acceptance tests.
 License: MIT + file LICENSE
+URL: https://github.com/alanmaxsp/varestcf
+BugReports: https://github.com/alanmaxsp/varestcf/issues
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports: Matrix, methods, utils, stats
