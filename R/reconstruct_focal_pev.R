@@ -56,6 +56,10 @@
   input_bytes <- sum(vapply(list(X, Z, Q, W), function(a) as.numeric(object.size(a)), 0))
   .memory_guard(input_bytes + output_work + buffers, memory_budget_gib,
                 "Inputs, focal output and buffers")
+  # A singular fixed design can pass a floating-point Cholesky on some backends.
+  # Reject it explicitly using the same scaled sparse QR as formula preparation.
+  .need(p <= n && ncol(.identified_design(X, tolerance)$X) == p,
+        "X must have full column rank. Supply an identified fixed-effect design.")
   # Strict reference checks: this incurs additional factorizations, reported separately.
   check_factor <- .spd_factor(Q, "random_precision")
   .memory_guard(input_bytes + as.numeric(object.size(check_factor)) + output_work + buffers,

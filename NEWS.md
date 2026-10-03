@@ -1,5 +1,6 @@
 # 0.3.0 — varios términos aleatorios
 
+- Validación explícita de rango fijo mediante QR dispersa escalada para rechazar diseños no identificados de forma consistente entre sistemas (explicit fixed-design rank validation across backends).
 - Especificación de términos por nombre, identificación, base y covarianza.
 - Selección explícita del efecto genético focal; todos los términos permanecen en las ecuaciones.
 - Covarianzas conjuntas entre términos que comparten una matriz de relaciones.

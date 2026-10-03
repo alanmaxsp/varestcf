@@ -92,7 +92,8 @@ submatrix of C, and does not treat fixed effects as known.
 The covariance is conditional on the supplied model and variance components.
 It does not include uncertainty of estimated components. An equivalent
 identified parameterization of X must be supplied in matrix mode; redundant columns
-are rejected. Formula mode removes and reports redundant fixed columns using a
+are rejected by an explicit scaled sparse QR rank check before equation
+factorization. Formula mode removes and reports redundant fixed columns using a
 scaled sparse QR decomposition. No variance components are estimated.
 
 For coefficient order grouped by component, Q can be constructed as
@@ -119,7 +120,8 @@ Formula offsets, multi-trait random regression, general cross-kernel
 covariances and heterogeneous multivariate residual blocks are not automated.
 The scope is linear Gaussian mixed models conditional on supplied covariances.
 
-The reference performs positive-definiteness checks of Q and of a general
+The reference performs an additional scaled sparse QR of X for rank validation,
+as well as positive-definiteness checks of Q and of a general
 residual precision by additional factorizations. Conservative assembly bounds
 and 32-bit CSC index limits can reject a model even when a more optimized
 representation would fit. Factor fill and transient allocations remain
@@ -236,7 +238,8 @@ efectos fijos.
 La covarianza es condicional al modelo y a los componentes suministrados. No
 incluye incertidumbre de estimación de componentes. En la interfaz matricial
 debe suministrarse una parametrización identificada equivalente de X; las
-columnas redundantes se rechazan. En la interfaz de fórmulas se eliminan y
+columnas redundantes se rechazan con una comprobación explícita de rango mediante
+QR dispersa escalada antes de factorizar las ecuaciones. En la interfaz de fórmulas se eliminan y
 registran columnas fijas redundantes mediante QR dispersa escalada. No se
 estiman componentes de varianza.
 
@@ -268,7 +271,8 @@ heterogéneos. El alcance son modelos mixtos lineales gaussianos condicionales a
 covarianzas suministradas.
 }
 \subsection{Recursos y exactitud numérica}{
-La referencia valida que Q y una precisión residual general sean definidas
+La referencia realiza una QR dispersa escalada adicional de X para validar el
+rango, y valida que Q y una precisión residual general sean definidas
 positivas mediante factorizaciones adicionales. Las cotas conservadoras de
 ensamblado y los índices CSC de 32 bits pueden rechazar un modelo que una
 representación más optimizada admitiría. El llenado del factor y las

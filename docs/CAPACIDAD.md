@@ -33,6 +33,7 @@ Sean M las ecuaciones completas, r los coeficientes aleatorios, q los coeficient
 | B y V | Dos matrices M×b double: aproximadamente 16Mb bytes, más temporales |
 | Sigma | q×q double: 8q² bytes, más copias/validaciones |
 | Validación de Q y W matricial | Factorizaciones adicionales en esta referencia estricta |
+| Validación de rango de X | QR dispersa escalada adicional; depende del diseño y su llenado |
 | Validación final de Sigma | Cholesky denso, O(q³) |
 | Fórmula VarEst-CF | O(q²) para q EBV; la validación de la matriz añade O(q³) |
 
@@ -106,6 +107,7 @@ q the number of focal coefficients, and b the solve block size.
 | B and V | Two M×b double matrices: approximately 16Mb bytes, plus temporaries |
 | Sigma | q×q double matrix: 8q² bytes, plus copies/validation |
 | Validation of Q and matrix W | Additional factorizations in this strict reference |
+| Rank validation of X | Additional scaled sparse QR; depends on the design and its fill |
 | Final validation of Sigma | Dense Cholesky, O(q³) |
 | VarEst-CF formula | O(q²) for q EBV; matrix validation adds O(q³) |
 
